@@ -12,7 +12,7 @@ TBD
 **Sprint 3:**
 TBD
 
-**Current Diagrams:**
+**Diagrams:**
 
-Class Diagram:
+Class and Database diagrams can be found in this repo.
 
