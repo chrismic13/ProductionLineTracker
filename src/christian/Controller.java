@@ -1,5 +1,12 @@
 package christian;
 
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,15 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 
-import javax.annotation.Resources;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
@@ -87,8 +86,9 @@ public class Controller implements Initializable {
 
   @FXML
   void addProduct(MouseEvent event) {
-    String pName = textFieldProductName.getText();
+    String productName = textFieldProductName.getText();
     String manufacturer = textFieldManufacturer.getText();
+    String type = "";
     Connection conn = null;
     Statement stmt = null;
     try {
@@ -100,10 +100,14 @@ public class Controller implements Initializable {
       //STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO Product(type, manufacturer, name) VALUES ( 'AUDIO', '" + manufacturer
-              + "', '" + pName + "' );";
-      stmt.executeUpdate(sql);
+          "INSERT INTO Product(type, manufacturer, name) VALUES ( ?,?,?);";
+      PreparedStatement st = conn.prepareStatement(sql);
+      st.setString(1, type);
+      st.setString(2, manufacturer);
+      st.setString(3, productName);
+      st.executeUpdate();
       // STEP 4: Clean-up environment
+      st.close();
       stmt.close();
       conn.close();
     } catch (ClassNotFoundException e) {
