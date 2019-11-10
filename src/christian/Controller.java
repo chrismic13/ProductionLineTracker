@@ -1,8 +1,8 @@
 package christian;
 /*@author Christian McCann
 9/28/2019
-This class is the main driver of the program. In this class I establish a
-connection to a Database and insert date into it.*/
+This class is where the bulk of the code goes that deals with the gui of the program.
+In this class I establish a connection to a Database and insert date into it.*/
 
 import java.net.URL;
 import java.sql.Connection;
@@ -20,8 +20,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 /*This class implements Initializable to help with the combobox later on.*/
@@ -35,6 +37,7 @@ public class Controller implements Initializable {
   static final String USER = "";
   static final String PASS = "";
 
+
   /*This next initialize method is used to give the options 1-10 to the combobox.*/
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -43,15 +46,39 @@ public class Controller implements Initializable {
         FXCollections.observableArrayList(
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
         );
-    /*These next three lines set the combobox to the iotions list from about, allow the
+    /*These next three lines set the combobox to the options list from about, allow the
     users to edit it, and selects the first option.*/
     comboBoxChooseQuantity.setItems(options);
     comboBoxChooseQuantity.setEditable(true);
     comboBoxChooseQuantity.getSelectionModel().selectFirst();
+    /*This next line is adding the item type values to the choicebox so that users can select it.*/
+    choiceBoxItemType.getItems().setAll(ItemType.values());
+    /*These next two lines are creating observable lists to store products in the product line tab,
+    and production records for the production records tab.*/
+    productLine = FXCollections.observableArrayList();
+    productionRecords = FXCollections.observableArrayList();
+
+    /*These next three lines are setting each column in the tableview to the variable that it
+    goes with.*/
+    colProductName.setCellValueFactory(new PropertyValueFactory("name"));
+    colManufacturer.setCellValueFactory(new PropertyValueFactory("manufacturer"));
+    colItemType.setCellValueFactory(new PropertyValueFactory("type"));
+
+    /*These next three lines set the observable lists that will be populating the tableview of
+    existing products, the listview for choosing items to produce, and the listview being used for
+    the production log*/
+    tableViewExistingProducts.setItems(productLine);
+    listViewChooseProduct.setItems(productLine);
+    listViewProductionLog.setItems(productionRecords);
   }
 
+
   /*The following fields are here because everything in the fxml has an fxid
-  so that these elements can be used later.*/
+  so that these elements can be used in the code.*/
+  private ObservableList<Product> productLine;
+
+  private ObservableList<ProductionRecord> productionRecords;
+
   @FXML
   private TextField textFieldProductName;
 
@@ -68,10 +95,10 @@ public class Controller implements Initializable {
   private Label labelItemType;
 
   @FXML
-  private ChoiceBox<?> choiceBoxItemType;
+  private ChoiceBox<ItemType> choiceBoxItemType;
 
   @FXML
-  private TableView<?> tableViewExistingProducts;
+  private TableView<Product> tableViewExistingProducts;
 
   @FXML
   private Button buttonAddProduct;
@@ -83,7 +110,7 @@ public class Controller implements Initializable {
   private Label labelChooseProduct;
 
   @FXML
-  private ListView<?> listViewChooseProduct;
+  private ListView<Product> listViewChooseProduct;
 
   @FXML
   private Label labelChooseQuantity;
@@ -91,18 +118,36 @@ public class Controller implements Initializable {
   @FXML
   private ComboBox comboBoxChooseQuantity;
 
+  @FXML
+  private TableColumn<?, ?> colProductName;
+
+  @FXML
+  private TableColumn<?, ?> colManufacturer;
+
+  @FXML
+  private TableColumn<?, ?> colItemType;
+
+  @FXML
+  private ListView listViewProductionLog;
 
   @FXML
   private Button buttonRecordProduction;
 
   /*This next event method is used to establish the connection to the
-  database and insert values into the database.*/
+  database and insert values into the database.
+
+  It is also used to add products to an observable list of products that is being used to test
+  this program before full db integration*/
   @FXML
   void addProduct(MouseEvent event) {
     /*These next two lines are taking the two fields from the gui and turning
-    them into strings to be inserted into the database*/
+    them into strings to be used in the code*/
     String productName = textFieldProductName.getText();
     String manufacturer = textFieldManufacturer.getText();
+    ItemType itemType = choiceBoxItemType.getValue();
+
+    /*This next line created a new product that is added to the product observable list.*/
+    productLine.add(new Widget(productName, manufacturer, itemType));
     /*This next line is a placeholder for the type value in the database
      table Product.*/
     String type = "";
@@ -142,10 +187,25 @@ public class Controller implements Initializable {
     }
   }
 
-  /*This next event method is here for future development of the Record Production button*/
+
+  /*This next event method is here to create production records and display them to the user*/
   @FXML
   void recordProduction(MouseEvent event) {
-    System.out.println("recordProduction");
+    /*This if statement is here to make sure that the program does not run into any errors if you
+    product is selected in the choose product list view.*/
+    if (!listViewChooseProduct.getSelectionModel().isEmpty()) {
+      /*These next lines grab the product and count numbers from the Produce tab so that they can
+      be used to create production records.*/
+      Product product = listViewChooseProduct.getSelectionModel().getSelectedItem();
+      int count = comboBoxChooseQuantity.getSelectionModel().getSelectedIndex() + 1;
+      /*This next line is adding a production record object to an observable list that is
+      used later.*/
+      productionRecords.add(new ProductionRecord(product, count));
+    } else {
+
+    }
+
+
   }
 
 }
