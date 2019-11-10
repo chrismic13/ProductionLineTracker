@@ -7,7 +7,7 @@ This is a project that is designed to help a media player production facility ke
 Currently this project connects to a database allowing users to insert products.
 
 **Sprint 2:**
-TBD
+This Project has not progressed further into databases, but each tab of the program has functionality and the next step is to integrate the database.
 
 **Sprint 3:**
 TBD
