@@ -1,11 +1,10 @@
 package christian;
 
-/*@author Christian McCann
-11/9/2019
-This class is a big part of the program and is integral to it working.
-This class implements the item interface.
-This class is also an abstract class because there are different types of products and a
-product itself cannot exist.*/
+/**
+ * @author Christian McCann 11/9/2019 This class is a big part of the program and is integral to it
+ * working. This class implements the item interface. This class is also an abstract class because
+ * there are different types of products and a product itself cannot exist.
+ */
 public abstract class Product implements Item {
 
   private int Id;
@@ -15,15 +14,25 @@ public abstract class Product implements Item {
   private String manufacturer;
   private String name;
 
-  /*This is a simple constructor that sets all of the fields.*/
+  /**
+   * This is a simple constructor that sets all of the fields.
+   *
+   * @param name         name of the product
+   * @param manufacturer manufacturer of the product
+   * @param type         product type
+   */
   Product(String name, String manufacturer, ItemType type) {
     this.name = name;
     this.manufacturer = manufacturer;
     this.type = type;
   }
 
-  /*This toString method overrides the super to string method to display its fields in a
-  neat and clean way.*/
+  /**
+   * This toString method overrides the super to string method to display its fields in a neat and
+   * clean way.
+   *
+   * @return
+   */
   @Override
   public String toString() {
     return "Name: " + name + "\n" + "Manufacturer: " + manufacturer + "\n" + "Type: "
@@ -60,11 +69,19 @@ public abstract class Product implements Item {
   }
 }
 
-/*The widget class is a temporary class that extends product and is used to create a basic product
-because we cannot create a product as it is an abstract class.*/
+/**
+ * The widget class is a temporary class that extends product and is used to create a basic product
+ * because we cannot create a product as it is an abstract class.
+ */
 class Widget extends Product {
 
-  /*The constructor for this class just calls the constructor for its super class product.*/
+  /**
+   * The constructor for this class just calls the constructor for its super class product.
+   *
+   * @param name         the name of the product
+   * @param manufacturer the manufacturer of the product
+   * @param type         the product type
+   */
   Widget(String name, String manufacturer, ItemType type) {
     super(name, manufacturer, type);
   }

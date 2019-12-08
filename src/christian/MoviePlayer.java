@@ -1,15 +1,23 @@
 package christian;
 
-/*@author Christian McCann
-11/9/2019
-This class extends the class product and implements the multimedia control interface. */
+/**
+ * @author Christian McCann 11/9/2019 This class extends the class product and implements the
+ * multimedia control interface.
+ */
 public class MoviePlayer extends Product implements MultimediaControl {
 
   private Screen screen;
   private MonitorType monitorType;
 
-  /*This constructor uses the parent class constructor while also setting the new
-  variables for the class.*/
+  /**
+   * This constructor uses the parent class constructor while also setting the new variables for the
+   * class.
+   *
+   * @param name         name of the product
+   * @param manufacturer manufacturer of product
+   * @param screen       the screen of the product
+   * @param monitorType  the type of monitor
+   */
   MoviePlayer(String name, String manufacturer, Screen screen, MonitorType monitorType) {
     super(name, manufacturer, ItemType.VISUAL);
     this.screen = screen;
@@ -33,8 +41,12 @@ public class MoviePlayer extends Product implements MultimediaControl {
     System.out.println("Next movie");
   }
 
-  /*This toString method overrides its parent toString method while also utilizing it to
-  decrease on the amount of code needed.*/
+  /**
+   * This toString method overrides its parent toString method while also utilizing it to decrease
+   * on the amount of code needed.
+   *
+   * @return
+   */
   @Override
   public String toString() {
     return super.toString() + "\n" + screen.toString() + "\n" + "Monitor Type: " + monitorType;

@@ -10,13 +10,15 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="christian.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="christian.Controller">
   <columnConstraints>
     <ColumnConstraints />
   </columnConstraints>
@@ -94,10 +96,84 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                     <ListView fx:id="listViewProductionLog" layoutX="24.0" layoutY="37.0" prefHeight="318.0" prefWidth="464.0" />
                      <Label layoutX="36.0" layoutY="14.0" text="Production Log:" />
+                     <TextArea fx:id="textAreaProductionLog" layoutX="36.0" layoutY="39.0" prefHeight="307.0" prefWidth="440.0" />
                   </children>
           </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Employee Login Generator">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <GridPane layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="492.0">
+                       <columnConstraints>
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                           <TextField fx:id="textFieldFullName" GridPane.columnIndex="1" />
+                           <Label prefHeight="17.0" prefWidth="110.0" text="Enter Full Name:" GridPane.halignment="RIGHT">
+                              <GridPane.margin>
+                                 <Insets right="10.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <Label layoutX="10.0" layoutY="31.0" prefHeight="17.0" prefWidth="110.0" text="Enter Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                              <GridPane.margin>
+                                 <Insets right="10.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <Label layoutX="10.0" layoutY="89.0" prefHeight="17.0" prefWidth="110.0" text="Username:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                              <GridPane.margin>
+                                 <Insets right="10.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <Label layoutX="10.0" layoutY="205.0" prefHeight="17.0" prefWidth="110.0" text="Email:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                              <GridPane.margin>
+                                 <Insets right="10.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <Label layoutX="10.0" layoutY="263.0" prefHeight="17.0" prefWidth="110.0" text="Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                              <GridPane.margin>
+                                 <Insets right="10.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <Label prefHeight="58.0" prefWidth="255.0" text="Passwords must contain a lowercase, uppercase, and a special character" textFill="#fc0000" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                              <GridPane.margin>
+                                 <Insets left="20.0" />
+                              </GridPane.margin>
+                              <font>
+                                 <Font size="10.0" />
+                              </font>
+                           </Label>
+                           <TextField fx:id="textFieldPassword" layoutX="256.0" layoutY="27.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           <Button fx:id="buttonEmployee" mnemonicParsing="false" onMouseClicked="#genEmpInfo" text="Generate Employee Information" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                           <Label fx:id="labelUserName" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                           <Label fx:id="labelEmail" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                           <Label fx:id="labelPassWord" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </GridPane>
+                  </children></AnchorPane>
         </content>
       </Tab>
     </tabs>

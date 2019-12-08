@@ -1,8 +1,10 @@
 package christian;
 
-/*@author Christian McCann
- * 9/28/2019
- * Main Class of Production Line Tracker Program.*/
+/**
+ * @author Christian McCann 9/28/2019 Main Class of Production Line Tracker Program. This program is
+ * used to keep track of products that can be produced as well as generating logs of that
+ * production. This program is also used to generate employee credentials
+ */
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +12,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/*This is the main class of my Production line tracker program.*/
+/**
+ * This class extends application as this program uses a GUI.
+ */
 
 public class Main extends Application {
 
