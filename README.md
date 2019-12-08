@@ -10,7 +10,7 @@ Currently this project connects to a database allowing users to insert products.
 This Project has not progressed further into databases, but each tab of the program has functionality and the next step is to integrate the database.
 
 **Sprint 3:**
-TBD
+This project now fully works as designed. Products can be added to the database, and Production logs can be generated and saved to the database. This program also includes a tab to generate employee usernames and emails. This tab also checks password requirements.
 
 **Diagrams:**
 
