@@ -14,5 +14,5 @@ This project now fully works as designed. Products can be added to the database,
 
 **Diagrams:**
 
-Class and Database diagrams can be found in this repo.
+Class and Database diagrams can be found as PNG files in this repo.
 
